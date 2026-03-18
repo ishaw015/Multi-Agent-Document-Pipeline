@@ -281,10 +281,10 @@ def render_result(result, index):
         # preprocessed image
         processed_path = result.get("processed_image_path")
         if processed_path and os.path.exists(processed_path):
-            with st.expander("🔧 Preprocessed Image"):
-                st.image(processed_path,
-                         caption="After deskew + denoise + CLAHE",
-                         use_container_width=True)
+            st.markdown("**🔧 Preprocessed Image**")
+            st.image(processed_path,
+                     caption="After deskew + denoise + CLAHE",
+                     use_container_width=True)
 
 # ── Main Layout ───────────────────────────────────────────────────────────────
 col1, col2 = st.columns([1, 1], gap="large")
