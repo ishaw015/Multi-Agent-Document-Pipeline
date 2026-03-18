@@ -1,0 +1,49 @@
+# ════════════════════════════════════════════════════════════════════════════════
+# Dockerfile.streamlit  —  Streamlit frontend
+# ════════════════════════════════════════════════════════════════════════════════
+FROM python:3.11-slim AS builder
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        libpq-dev \
+        libglib2.0-0 \
+        libgl1 \
+        libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /install
+
+COPY requirements.txt .
+RUN pip install --upgrade pip \
+ && pip install --prefix=/install/deps --no-cache-dir -r requirements.txt \
+ && pip install --prefix=/install/deps --no-cache-dir streamlit==1.41.1
+
+# ════════════════════════════════════════════════════════════════════════════════
+FROM python:3.11-slim AS runtime
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libpq5 \
+        libglib2.0-0 \
+        libgl1 \
+        libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /install/deps /usr/local
+
+WORKDIR /app
+
+COPY src/ ./src/
+
+RUN useradd --no-create-home --shell /bin/false appuser \
+ && mkdir -p outputs \
+ && chown -R appuser:appuser /app
+USER appuser
+
+ENV PORT=8501 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONPATH=/app/src
+
+EXPOSE ${PORT}
+
+CMD ["sh", "-c", "streamlit run src/app.py --server.port=${PORT} --server.address=0.0.0.0 --server.headless=true"]
