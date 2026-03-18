@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from sqlalchemy.orm import Session
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic import BaseModel
 from datetime import datetime
 import shutil
@@ -18,15 +18,16 @@ from pipeline import run_pipeline
 router = APIRouter(prefix="/documents", tags=["Documents"])
 
 # ── schemas ─────────────────────────────────────────────────────────────────
+
 class DocumentResponse(BaseModel):
-    id:               int
-    filename:         str
-    document_type:    str
+    id:                int
+    filename:          str
+    document_type:     str
     validation_status: str
-    validated_json:   Optional[dict]
+    validated_json:    Optional[Union[dict, list]]  # ← accepts both
     validation_errors: Optional[list]
-    processed_by:     str
-    created_at:       datetime
+    processed_by:      str
+    created_at:        datetime
 
     class Config:
         from_attributes = True
@@ -35,7 +36,6 @@ class DocumentDetailResponse(DocumentResponse):
     extracted_text:  Optional[str]
     raw_json_output: Optional[str]
     pipeline_log:    Optional[list]
-
 # ── routes ──────────────────────────────────────────────────────────────────
 @router.post("/process", response_model=DocumentDetailResponse, status_code=201)
 async def process_document(
