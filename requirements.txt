@@ -1,0 +1,14 @@
+langgraph
+langchain-google-genai
+opencv-python
+pillow
+streamlit
+jsonschema
+google-genai
+python-dotenv
+transformers==4.44.0
+tokenizers==0.21.0
+peft==0.10.0
+torch
+accelerate
+numpy

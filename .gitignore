@@ -1,0 +1,22 @@
+# environment
+.env
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# outputs
+outputs/
+
+# model files
+*.safetensors
+*.bin
+
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
