@@ -1,14 +1,43 @@
-langgraph
-langchain-google-genai
-opencv-python
-pillow
-streamlit
-jsonschema
-google-genai
-python-dotenv
-transformers==4.44.0
-tokenizers==0.21.0
-peft==0.10.0
-torch
-accelerate
-numpy
+# ── Web Framework ──────────────────────────────────────────────────────────────
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+python-multipart==0.0.20
+
+# ── Authentication ──────────────────────────────────────────────────────────────
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.2.1
+
+# ── Database ────────────────────────────────────────────────────────────────────
+sqlalchemy==2.0.36
+psycopg2-binary==2.9.10
+alembic==1.14.0
+
+# ── Agent Orchestration ─────────────────────────────────────────────────────────
+langgraph==0.2.60
+langchain==0.3.13
+langchain-core==0.3.28
+langchain-google-genai==2.0.8
+
+# ── Google Gemini ───────────────────────────────────────────────────────────────
+google-genai==1.10.0
+google-ai-generativelanguage==0.6.10
+
+# ── Image Processing ────────────────────────────────────────────────────────────
+opencv-python-headless==4.10.0.84
+numpy==1.26.4
+Pillow==11.1.0
+
+# ── JSON Validation ─────────────────────────────────────────────────────────────
+jsonschema==4.23.0
+
+# ── HTTP / Retry ────────────────────────────────────────────────────────────────
+httpx==0.28.1
+tenacity==9.0.0
+requests==2.32.3
+
+# ── Utilities ───────────────────────────────────────────────────────────────────
+python-dotenv==1.0.1
+pydantic==2.10.4
+pydantic-settings==2.7.0
+typing-extensions==4.12.2

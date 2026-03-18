@@ -1,0 +1,101 @@
+# ════════════════════════════════════════════════════════════════════════════════
+# docker-compose.yml  —  Local development / integration testing
+#
+# Services
+#   db   — PostgreSQL 15 (mirrors GCP Cloud SQL schema)
+#   api  — FastAPI application (same image as Cloud Run)
+#
+# Usage
+#   docker compose up --build          # start everything
+#   docker compose up --build -d       # detached
+#   docker compose logs -f api         # tail API logs
+#   docker compose down -v             # stop + delete volumes
+# ════════════════════════════════════════════════════════════════════════════════
+
+services:
+
+  # ── PostgreSQL ───────────────────────────────────────────────────────────────
+  db:
+    image: postgres:15-alpine
+    container_name: docpipeline_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: docpipeline
+    ports:
+      # Host 5434 → container 5432  (matches your existing local DB port)
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d docpipeline"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - docpipeline_net
+
+  # ── FastAPI Application ──────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: docpipeline_api
+    restart: unless-stopped
+
+    # ── Environment variables ──────────────────────────────────────────────────
+    # Sensitive values are read from a local .env file (never commit .env!)
+    # Non-sensitive defaults are set inline.
+    environment:
+      # Database — points to the compose service name, not 127.0.0.1
+      DATABASE_URL: postgresql://postgres:password@db:5432/docpipeline
+
+      # Secrets — loaded from .env at compose runtime
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      SECRET_KEY: ${SECRET_KEY}
+
+      # Uvicorn / app settings
+      PORT: "8080"
+      PYTHONUNBUFFERED: "1"
+
+    env_file:
+      # Optional: put GEMINI_API_KEY and SECRET_KEY here so they are not
+      # in shell environment. docker-compose merges env_file + environment.
+      - .env
+
+    ports:
+      # Host 8080 → container 8080
+      - "8080:8080"
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    # Mount source during development so you can edit without rebuilding.
+    # Comment these out when doing a final production image test.
+    volumes:
+      - ./src:/app/src:ro
+      - ./api:/app/api:ro
+
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8080/health')\""]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+    networks:
+      - docpipeline_net
+
+# ── Named volumes ────────────────────────────────────────────────────────────────
+volumes:
+  postgres_data:
+    driver: local
+
+# ── Networks ─────────────────────────────────────────────────────────────────────
+networks:
+  docpipeline_net:
+    driver: bridge
