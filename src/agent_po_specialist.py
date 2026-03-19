@@ -56,7 +56,7 @@ Rules:
 - currency should be 3-letter code e.g. USD, EUR, GBP, INR
 - status: pending, approved, delivered, cancelled, unknown
 - date format: DD-MM-YYYY
-- po_number: extract as string exactly as it appears
+- po_number: look for patterns like "PO #", "PO Number", "Purchase Order #", "Order No" followed by a number — extract the number as a string e.g. "120", "PO-120"
 - If a value is not found, use null for strings and 0 for numbers
 - Output ONLY the JSON object, nothing else"""
 
