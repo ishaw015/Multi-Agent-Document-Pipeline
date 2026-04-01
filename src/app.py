@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_URL = os.getenv("API_URL", "https://multi-agentdocument-pipeline-production.up.railway.app")
+API_URL = os.getenv("API_URL", "https://multi-agent-document-pipeline-production.up.railway.app")
 
 st.set_page_config(
     page_title="DocPipeline AI",
