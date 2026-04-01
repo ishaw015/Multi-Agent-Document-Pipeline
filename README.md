@@ -184,7 +184,6 @@ DATABASE_URL=postgresql://postgres:password@db:5432/docpipeline
 
 ## 🔗 Related
 
-- 🤗 Fine-tuned Mistral model: [Isha0408/mistral-json-specialist](https://huggingface.co/Isha0408/mistral-json-specialist)
 - 💻 Local version with Mistral: [`main` branch](../../tree/main)
 
 ---
