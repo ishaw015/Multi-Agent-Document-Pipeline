@@ -3,7 +3,6 @@
 > **Intelligent document intelligence powered by LangGraph, Gemini Vision, fine-tuned Mistral-7B, and OpenCV.**
 > Upload any document image — get back structured JSON in seconds.
 
-[![HuggingFace](https://img.shields.io/badge/Model-Mistral--7B%20Fine--tuned-FFD21E?style=for-the-badge&logo=huggingface)](https://huggingface.co/Isha0408/mistral-json-specialist)
 [![Deployment](https://img.shields.io/badge/Cloud%20Version-deployment%20branch-0B0D0E?style=for-the-badge&logo=railway)](../../tree/deployment)
 
 ---
@@ -74,7 +73,6 @@ User → Streamlit UI → LangGraph Pipeline → PostgreSQL
 
 The `agent_json_specialist.py` uses a **custom fine-tuned Mistral-7B** model trained with **QLoRA + SFT** specifically for structured JSON extraction from invoice and product documents.
 
-- 🤗 Model: [Isha0408/mistral-json-specialist](https://huggingface.co/Isha0408/mistral-json-specialist)
 - Training: QLoRA + Supervised Fine-Tuning (SFT)
 - Saved at: Google Drive `/content/drive/MyDrive/json-specialist-sft`
 
@@ -201,4 +199,3 @@ MISTRAL_API_URL=https://your-ngrok-url/extract  # optional
 ## 🔗 Related
 
 - ☁️ Cloud deployment version: [`deployment` branch](../../tree/deployment)
-- 🤗 Fine-tuned model: [Isha0408/mistral-json-specialist](https://huggingface.co/Isha0408/mistral-json-specialist)
