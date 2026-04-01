@@ -55,7 +55,8 @@ Rules:
 - currency should be 3-letter code e.g. USD, EUR, GBP, INR
 - account_number: extract as string exactly as it appears
 - statement_period: format as "DD-MM-YYYY to DD-MM-YYYY"
-- date format in transactions: DD-MM-YYYY
+- date format in transactions: DD-MM-YYYY — dates appear in the leftmost column of the transaction table, convert from YYYY-MM-DD to DD-MM-YYYY format
+- every transaction row in the table has a date — do NOT return null for date, look carefully at the Date column
 - If a value is not found, use null for strings and 0 for numbers
 - Output ONLY the JSON object, nothing else"""
 
