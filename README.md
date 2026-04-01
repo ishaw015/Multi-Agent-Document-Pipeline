@@ -13,9 +13,9 @@
 
 | Service | URL |
 |---|---|
-| 🖥️ Streamlit UI | https://strong-reprieve-production.up.railway.app |
-| ⚡ FastAPI Backend | https://multi-agentdocument-pipeline-production.up.railway.app |
-| 📖 API Docs (Swagger) | https://multi-agentdocument-pipeline-production.up.railway.app/docs |
+| 🖥️ Streamlit UI | https://exemplary-learning-production-a01f.up.railway.app |
+| ⚡ FastAPI Backend | https://multi-agent-document-pipeline-production.up.railway.app |
+| 📖 API Docs (Swagger) | https://multi-agent-document-pipeline-production.up.railway.app/docs |
 
 ---
 
@@ -104,7 +104,7 @@ User → Streamlit UI → FastAPI REST API → LangGraph Pipeline → PostgreSQL
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/Isha0816/Multi-Agent_Doc_Processing_Pipeline.git
+git clone https://github.com/ishaw015/Multi-Agent-Document-Pipeline.git
 cd Multi-Agent_Doc_Processing_Pipeline
 git checkout deployment
 
