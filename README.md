@@ -23,9 +23,9 @@ The cloud version is live on the `deployment` branch:
 
 | Service | URL |
 |---|---|
-| 🖥️ Streamlit UI | https://strong-reprieve-production.up.railway.app |
-| ⚡ FastAPI Backend | https://multi-agentdocument-pipeline-production.up.railway.app |
-| 📖 API Docs | https://multi-agentdocument-pipeline-production.up.railway.app/docs |
+| 🖥️ Streamlit UI | https://exemplary-learning-production-a01f.up.railway.app |
+| ⚡ FastAPI Backend | https://multi-agent-document-pipeline-production.up.railway.app |
+| 📖 API Docs | https://multi-agent-document-pipeline-production.up.railway.app/docs |
 
 ---
 
