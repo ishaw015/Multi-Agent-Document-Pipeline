@@ -3,22 +3,6 @@
 > **Intelligent document intelligence powered by LangGraph, Gemini Vision, and OpenCV.**
 > Upload any document image — get back structured JSON in seconds.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit)](https://exemplary-learning-production-a01f.up.railway.app)
-[![API Docs](https://img.shields.io/badge/API%20Docs-FastAPI-009688?style=for-the-badge&logo=fastapi)](https://multi-agent-document-pipeline-production.up.railway.app/docs)
-[![Railway](https://img.shields.io/badge/Deployed%20on-Railway-0B0D0E?style=for-the-badge&logo=railway)](https://railway.app)
-
----
-
-## 🌐 Live Links
-
-| Service | URL |
-|---|---|
-| 🖥️ Streamlit UI | https://exemplary-learning-production-a01f.up.railway.app |
-| ⚡ FastAPI Backend | https://multi-agent-document-pipeline-production.up.railway.app |
-| 📖 API Docs (Swagger) | https://multi-agent-document-pipeline-production.up.railway.app/docs |
-
----
-
 ## 📌 Branch Overview
 
 | Branch | Description |
